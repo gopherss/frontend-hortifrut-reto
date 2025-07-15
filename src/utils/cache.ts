@@ -6,11 +6,13 @@ export const getCache = (key: string) => {
     return JSON.parse(item);
   } catch (error) {
     console.warn(`Error parseando cache para key "${key}":`, item);
-    localStorage.removeItem(key); // Limpia la entrada inválida
+    localStorage.removeItem(key); // limpia automáticamente
     return null;
   }
 };
 
+
 export const setCache = (key: string, data: any) => {
+  if (data === undefined || data === null) return;
   localStorage.setItem(key, JSON.stringify(data));
 };
